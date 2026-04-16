@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invitación Mi primer añito</title>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+       /* --- FUENTE DE DINOSAURIO --- */
+        @font-face {
+            font-family: 'DinoRoar';
+            /* Aquí ponemos el nombre limpio del archivo */
+            src: url('dinoroar.otf') format('opentype');
+        }
+
+        /* Estilos generales */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #0d0d0d; 
+            background-image: url(junglafondo2.jpg); /* FONDO PRINCIPAL */
+            background-size: cover; 
+            background-position: center; 
+            background-attachment: fixed; 
+            font-family: 'Montserrat', sans-serif;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* --- ESTILOS PARA LA PANTALLA DE ENTRADA (SPLASH SCREEN) --- */
+        #splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 100; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: url(fondo_primera2.webp); /* FONDO DE LA PANTALLA DE ENTRADA */
+            background-size: cover;
+            background-position: center;
+            opacity: 1;
+            transition: opacity 1.2s ease-out; 
+        }
+
+        /* Estructura limpia (Flexbox para apilar texto y botón sin madera) */
+        .central-sign-container {
+            position: relative;
+            display: flex;
+            flex-direction: column; /* Apila los elementos verticalmente */
+            justify-content: center;
+            align-items: center;
+            width: 90%;
+            max-width: 600px;
+            gap: 40px; /* Espacio entre el texto y el botón */
+        }
+
+       /* --- ESTILOS PARA EL TEXTO ROOOAAR PASTEL --- */
+        .roaar-text {
+            font-family: 'DinoRoar', 'Anton', sans-serif; /* ¡AQUÍ SE APLICA LA FUENTE! */
+            font-size: 6rem; 
+            letter-spacing: 3px;
+            z-index: 120;
+            pointer-events: none; 
+            /* Contorno negro grueso para que los colores pastel no se pierdan */
+            text-shadow: 
+                -3px -3px 0 #000,  
+                 3px -3px 0 #000,
+                -3px  3px 0 #000,
+                 3px  3px 0 #000,
+                 6px  6px 15px rgba(0,0,0,0.8); 
+        }
+
+       
+    /* Paleta de colores Verde Pastel (De más claro a más oscuro) */
+        .verde-1 { color: #E8F5E9; } /* Verde pastel casi blanco */
+        .verde-2 { color: #C8E6C9; } /* Verde menta clarito */
+        .verde-3 { color: #A5D6A7; } /* Verde pastel medio */
+        .verde-4 { color: #81C784; } /* Verde pastel un poco más intenso */
+        .verde-5 { color: #1ae224; } /* Verde pastel oscuro */
+
+        /* --- ANIMACIÓN DE SALTO PARA EL ROOOAAR --- */
+        
+        /* 1. Creamos el movimiento de salto */
+        @keyframes saltoDino {
+            0%, 100% { transform: translateY(0); } /* Posición original */
+            50% { transform: translateY(-25px); }  /* Sube 25 pixeles */
+        }
+
+        /* 2. Le decimos a todas las letras que pueden saltar */
+        .roaar-text span {
+            display: inline-block; /* Obligatorio para que transform funcione en un span */
+            animation: saltoDino 1.2s infinite ease-in-out; /* infinite hace que no deje de saltar */
+        }
+
+        /* 3. Le damos un tiempo de inicio aleatorio a cada una de las 7 letras */
+        .roaar-text span:nth-child(1) { animation-delay: 0.1s; }
+        .roaar-text span:nth-child(2) { animation-delay: 0.6s; }
+        .roaar-text span:nth-child(3) { animation-delay: 0.3s; }
+        .roaar-text span:nth-child(4) { animation-delay: 0.8s; }
+        .roaar-text span:nth-child(5) { animation-delay: 0.2s; }
+        .roaar-text span:nth-child(6) { animation-delay: 0.7s; }
+        .roaar-text span:nth-child(7) { animation-delay: 0.4s; }
+
+        /* NUEVO BOTÓN LIMPIO Y MODERNO (SIN MADERA) */
+        .estas-listo-button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            text-decoration: none;
+            width: max-content;
+            max-width: 85%;
+            padding: 15px 35px;
+            background-color: #f7b733; /* Amarillo/naranja vibrante y limpio */
+            border: 3px solid #ffffff; /* Borde blanco para resaltar */
+            border-radius: 50px; /* Bordes bien redondeados */
+            font-family: 'Anton', sans-serif;
+            font-size: 1.5rem;
+            color: #1a1a1a; /* Letras oscuras para buen contraste */
+            text-transform: uppercase;
+            z-index: 130;
+            transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
+            cursor: pointer;
+            box-shadow: 0 8px 15px rgba(0,0,0,0.6);
+        }
+
+        .estas-listo-button:hover {
+            transform: scale(1.05);
+            background-color: #ffcc00;
+            box-shadow: 0 12px 20px rgba(0,0,0,0.8);
+        }
+
+        .estas-listo-button:active {
+            transform: scale(0.95); 
+            box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+        }
+
+        /* Clase para el desvanecimiento de salida */
+        .fade-out {
+            opacity: 0 !important;
+        }
+        
+        /* ------------------------------------------------------------------ */
+
+        /* Estilos del contenedor principal (Invitación) */
+        #invitation-content {
+            width: 90%;
+            max-width: 480px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 15px;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+            margin-top: 40px;
+            margin-bottom: 40px;
+            display: none; 
+        }
+        
+        .show-invitation {
+            display: block !important;
+            animation: fadeInInvitation 1s ease-in forwards;
+        }
+        
+        @keyframes fadeInInvitation {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        /* Animaciones Dinos */
+        @keyframes slideInDinoBottom {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideInDinoTop {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .dino-lateral {
+            position: fixed;
+            height: auto;
+            max-width: 25%;
+            z-index: 15;
+            opacity: 0; 
+            animation-duration: 1.2s;
+            animation-timing-function: ease-out;
+            animation-delay: 0.5s;
+            animation-fill-mode: forwards;
+            animation-play-state: paused; 
+            pointer-events: none;
+        }
+
+        .dino-arriba-izq { top: -10px; left: -20px; animation-name: slideInDinoTop; }
+        .dino-arriba-der { top: -10px; right: -20px; transform: scaleX(-1); animation-name: slideInDinoTop; }
+        .dino-abajo-izq { bottom: -10px; left: -20px; animation-name: slideInDinoBottom; }
+        .dino-abajo-der { bottom: -10px; right: -20px; transform: scaleX(-1); animation-name: slideInDinoBottom; }
+
+        @media (max-width: 768px) {
+            .dino-lateral { max-width: 35%; }
+            .dino-arriba-izq { left: -30px; top: -15px; }
+            .dino-arriba-der { right: -30px; top: -15px; transform: scaleX(-1); }
+            .dino-abajo-izq { left: -30px; bottom: -15px; }
+            .dino-abajo-der { right: -30px; bottom: -15px; transform: scaleX(-1); }
+            .roaar-text { font-size: 5rem; }
+        }
+        
+        @media (max-width: 480px) {
+             .dino-lateral { display: none; }
+             .roaar-text { font-size: 3.8rem; }
+             .estas-listo-button { font-size: 1.2rem; padding: 12px 20px; }
+        }
+
+        .dino-deco { position: absolute; max-width: 250px; z-index: 15; }
+        .trex-deco { top: -60px; left: -80px; content: url('url_de_la_imagen_trex.png'); }
+        .triceratops-deco { bottom: 25%; left: -70px; max-width: 180px; content: url('url_de_la_imagen_triceratops.png'); }
+        .pterodactilo-deco { top: 20px; right: -60px; max-width: 150px; content: url('url_de_la_imagen_pterodactilo.png'); }
+        .theropodo-deco { bottom: -50px; left: -50px; max-width: 180px; content: url('url_de_la_imagen_theropodo.png'); }
+
+        .logo-emilio {
+            margin-top: 150px;
+            margin-bottom: 20px;
+            z-index: 20;
+            position: relative;
+            content: url('url_de_la_imagen_logo_emilio.png');
+            max-width: 280px;
+        }
+
+        h2.date-header {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 300;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 0;
+            color: #d4d4d4;
+        }
+
+        .date-number {
+            font-family: 'Anton', sans-serif;
+            font-size: 6rem;
+            color: #f7b733;
+            margin-top: -10px;
+            margin-bottom: 0;
+            line-height: 1;
+        }
+
+        .date-month-year {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.3rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-top: -5px;
+            margin-bottom: 20px;
+            color: #f7b733;
+        }
+
+        .description { font-size: 1rem; margin-bottom: 20px; color: #ffffff; line-height: 1.5; padding: 0 10px; }
+
+        .countdown-wrapper {
+            margin: 30px 0;
+            padding: 15px;
+            background: rgba(20, 35, 10, 0.7);
+            border: 2px dashed #f7b733;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(247, 183, 51, 0.2);
+            position: relative;
+            z-index: 20;
+        }
+
+        .countdown-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: #f7b733;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        .countdown-container { display: flex; justify-content: center; gap: 12px; }
+
+        .time-box {
+            background-color: #1a1a1a;
+            border: 1px solid #4a5d23;
+            border-radius: 6px;
+            padding: 10px;
+            width: 55px;
+            text-align: center;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+        }
+
+        .time-number {
+            font-family: 'Anton', sans-serif;
+            font-size: 2.2rem;
+            color: #ffffff;
+            line-height: 1;
+            text-shadow: 2px 2px 4px #000000;
+            display: block;
+        }
+
+        .time-label {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.6rem;
+            color: #a8b092;
+            text-transform: uppercase;
+            margin-top: 5px;
+            display: block;
+            font-weight: bold;
+        }
+
+        .interactive-links {
+            background-color: #2b1d0e;
+            border-radius: 10px;
+            padding: 20px;
+            max-width: 320px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 20;
+        }
+
+        h3.links-header {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: #f7b733;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .link-button {
+            display: flex;
+            align-items: center;
+            background-color: #d17a22;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 8px;
+            padding: 10px 15px;
+            margin-bottom: 15px;
+            font-weight: bold;
+            text-align: left;
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        .link-button:hover { transform: scale(1.03); background-color: #c06c1d; }
+        .link-button .icon { font-size: 1.8rem; margin-right: 15px; width: 35px; text-align: center; }
+        .link-button .text { display: flex; flex-direction: column; }
+        .link-button .main-text { font-size: 0.9rem; text-transform: uppercase; }
+        .link-button .sub-text { font-size: 0.8rem; font-weight: normal; color: #ffe4cc; }
+
+    </style>
+</head>
+<body>
+
+    <div id="splash-screen">
+        <div class="central-sign-container">
+            
+         <div class="roaar-text">
+                <span class="verde-1">R</span><span class="verde-4">O</span><span class="verde-2">O</span><span class="verde-5">O</span><span class="verde-1">A</span><span class="verde-4">A</span><span class="verde-3">R</span>
+            </div>
+            <a id="enter-button" class="estas-listo-button">¿ESTÁS LISTO PARA ESTA AVENTURA?</a>
+        </div>
+    </div>
+    
+    <img class="dino-lateral dino-arriba-izq" src="Dino_arribaIzq.png" alt="Dino Arriba Izquierdo">
+    <img class="dino-lateral dino-arriba-der" src="dino_arribader.png" alt="Dino Arriba Derecho">
+
+    <img class="dino-lateral dino-abajo-izq" src="dinoIzquierda.png" alt="Dino Abajo Izquierdo">
+    <img class="dino-lateral dino-abajo-der" src="dinoderecha.png" alt="Dino Abajo Derecho">
+
+    <div id="invitation-content">
+        <div class="dino-deco trex-deco"></div>
+        <div class="dino-deco triceratops-deco"></div>
+        <div class="dino-deco pterodactilo-deco"></div>
+        <div class="dino-deco theropodo-deco"></div>
+
+        <h2 class="date-header">Mi primer Añito</h2>
+        <div class="date-number">09</div>
+        <div class="date-month-year">SÁBADO MAYO | 2026</div>
+
+        <p class="description">Acompáñanos a celebrar mi primer añito de vida, tu presencia es importante para mi y la de mis papis</p>
+
+        <div class="countdown-wrapper">
+            <div class="countdown-title">⚠️ Faltan para la expedición ⚠️</div>
+            <div class="countdown-container" id="countdown-timer">
+                <div class="time-box">
+                    <span class="time-number" id="days">00</span>
+                    <span class="time-label">Días</span>
+                </div>
+                <div class="time-box">
+                    <span class="time-number" id="hours">00</span>
+                    <span class="time-label">Horas</span>
+                </div>
+                <div class="time-box">
+                    <span class="time-number" id="minutes">00</span>
+                    <span class="time-label">Min</span>
+                </div>
+                <div class="time-box">
+                    <span class="time-number" id="seconds">00</span>
+                    <span class="time-label">Seg</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="interactive-links">
+            <h3 class="links-header">Ubicacion y Confirmación</h3>
+            
+            <a href="https://waze.com/ul?q=tu_ubicacion" class="link-button" target="_blank">
+                <div class="icon">📍</div>
+                <div class="text">
+                    <span class="main-text">UBICACIÓN (WAZE)</span>
+                    <span class="sub-text">Ver Ubicación en Waze</span>
+                </div>
+            </a>
+
+            <a href="https://forms.gle/tu_formulario" class="link-button" target="_blank">
+                <div class="icon">📝</div>
+                <div class="text">
+                    <span class="main-text">CONFIRMAR ASISTENCIA</span>
+                    <span class="sub-text">(Google Form) Confirmar Asistencia Aquí</span>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        const enterButton = document.getElementById('enter-button');
+        const splashScreen = document.getElementById('splash-screen');
+        const invitationContent = document.getElementById('invitation-content');
+        const lateralDinos = document.querySelectorAll('.dino-lateral');
+
+        enterButton.addEventListener('click', (e) => {
+            e.preventDefault(); 
+            splashScreen.classList.add('fade-out');
+
+            setTimeout(() => {
+                splashScreen.style.display = 'none';
+                invitationContent.classList.add('show-invitation'); 
+                
+                lateralDinos.forEach(dino => {
+                    dino.style.animationPlayState = 'running';
+                });
+            }, 1200);
+        });
+        
+        const countDownDate = new Date("May 9, 2026 15:30:00").getTime();
+        const x = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = countDownDate - now;
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            document.getElementById("days").innerText = days < 10 ? "0" + days : days;
+            document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
+            document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
+            document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("countdown-timer").innerHTML = "<div style='font-family: Anton, sans-serif; font-size: 1.8rem; color: #cc0000; letter-spacing: 2px; text-transform: uppercase;'>¡LOS DINOSAURIOS HAN ESCAPADO!</div>";
+                document.querySelector(".countdown-title").style.display = "none";
+            }
+        }, 1000);
+    </script>
+</body>
+</html>

@@ -2,13 +2,19 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Invitación Mi primer añito</title>
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <style>
+        /* --- REGLA DE ORO PARA MÓVILES (Evita que las cosas se salgan de la pantalla) --- */
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
         /* --- FUENTE DE DINOSAURIO --- */
         @font-face {
             font-family: 'DinoRoar';
+            /* RECUERDA: Tu archivo en GitHub DEBE llamarse exactamente dinoroar.otf todo en minúsculas */
             src: url('dinoroar.otf') format('opentype');
         }
 
@@ -17,7 +23,7 @@
             margin: 0;
             padding: 0;
             background-color: #0d0d0d; 
-            background-image: url(junglafondo2.jpg); /* FONDO PRINCIPAL */
+            background-image: url('junglafondo2.jpg'); 
             background-size: cover; 
             background-position: center; 
             background-attachment: fixed; 
@@ -27,7 +33,7 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            overflow-x: hidden;
+            overflow-x: hidden; /* Evita scroll horizontal */
             position: relative;
         }
 
@@ -42,63 +48,61 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background-image: url(fondo_primera2.webp); /* FONDO DE LA PANTALLA DE ENTRADA */
+            background-image: url('fondo_primera2.webp');
             background-size: cover;
             background-position: center;
+            background-color: #0d0d0d;
             opacity: 1;
             transition: opacity 1.2s ease-out; 
         }
 
-        /* Estructura limpia (Flexbox para apilar texto y botón sin madera) */
+        /* Contenedor Flexbox limpio y centrado */
         .central-sign-container {
-            position: relative;
             display: flex;
-            flex-direction: column; /* Apila los elementos verticalmente */
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             width: 90%;
             max-width: 600px;
-            gap: 40px; /* Espacio entre el texto y el botón */
+            gap: 3vh; /* Separación dinámica entre texto y botón */
         }
 
         /* --- ESTILOS PARA EL TEXTO ROOOAAR PASTEL --- */
         .roaar-text {
-            font-family: 'DinoRoar', 'Anton', sans-serif; /* ¡AQUÍ SE APLICA LA FUENTE! */
-            font-size: 6rem; 
-            letter-spacing: 3px;
+            font-family: 'DinoRoar', 'Anton', sans-serif; 
+            /* CLAMP: Mínimo 3.5rem, ideal 15% del ancho de pantalla, máximo 7rem */
+            font-size: clamp(3.5rem, 15vw, 7rem); 
+            letter-spacing: 2px;
+            text-align: center;
+            line-height: 1.1;
             z-index: 120;
-            pointer-events: none; 
-            /* Contorno negro grueso para que los colores pastel no se pierdan */
+            /* Contorno negro más fino para que no manche las letras en móviles */
             text-shadow: 
-                -3px -3px 0 #000,  
-                 3px -3px 0 #000,
-                -3px  3px 0 #000,
-                 3px  3px 0 #000,
-                 6px  6px 15px rgba(0,0,0,0.8); 
+                -2px -2px 0 #000,  
+                 2px -2px 0 #000,
+                -2px  2px 0 #000,
+                 2px  2px 0 #000,
+                 4px  4px 10px rgba(0,0,0,0.8); 
         }
 
-        /* Paleta de colores Verde Pastel (De más claro a más oscuro) */
-        .verde-1 { color: #E8F5E9; } /* Verde pastel casi blanco */
-        .verde-2 { color: #C8E6C9; } /* Verde menta clarito */
-        .verde-3 { color: #A5D6A7; } /* Verde pastel medio */
-        .verde-4 { color: #81C784; } /* Verde pastel un poco más intenso */
-        .verde-5 { color: #1ae224; } /* Verde pastel oscuro */
+        /* Paleta de colores Verde Pastel */
+        .verde-1 { color: #E8F5E9; } 
+        .verde-2 { color: #C8E6C9; } 
+        .verde-3 { color: #A5D6A7; } 
+        .verde-4 { color: #81C784; } 
+        .verde-5 { color: #1ae224; } 
 
-        /* --- ANIMACIÓN DE SALTO PARA EL ROOOAAR --- */
-        
-        /* 1. Creamos el movimiento de salto */
+        /* Movimiento de salto */
         @keyframes saltoDino {
-            0%, 100% { transform: translateY(0); } /* Posición original */
-            50% { transform: translateY(-25px); }  /* Sube 25 pixeles */
+            0%, 100% { transform: translateY(0); } 
+            50% { transform: translateY(-15px); }  
         }
 
-        /* 2. Le decimos a todas las letras que pueden saltar */
         .roaar-text span {
-            display: inline-block; /* Obligatorio para que transform funcione en un span */
-            animation: saltoDino 1.2s infinite ease-in-out; /* infinite hace que no deje de saltar */
+            display: inline-block; 
+            animation: saltoDino 1.2s infinite ease-in-out; 
         }
 
-        /* 3. Le damos un tiempo de inicio aleatorio a cada una de las 7 letras */
         .roaar-text span:nth-child(1) { animation-delay: 0.1s; }
         .roaar-text span:nth-child(2) { animation-delay: 0.6s; }
         .roaar-text span:nth-child(3) { animation-delay: 0.3s; }
@@ -107,33 +111,27 @@
         .roaar-text span:nth-child(6) { animation-delay: 0.7s; }
         .roaar-text span:nth-child(7) { animation-delay: 0.4s; }
 
-        /* NUEVO BOTÓN LIMPIO Y MODERNO (SIN MADERA) */
+        /* NUEVO BOTÓN LIMPIO Y ELÁSTICO */
         .estas-listo-button {
             display: flex;
             justify-content: center;
             align-items: center;
             text-align: center;
             text-decoration: none;
-            width: max-content;
-            max-width: 85%;
-            padding: 15px 35px;
-            background-color: #f7b733; /* Amarillo/naranja vibrante y limpio */
-            border: 3px solid #ffffff; /* Borde blanco para resaltar */
-            border-radius: 50px; /* Bordes bien redondeados */
+            width: 100%;
+            max-width: 320px;
+            padding: 15px 20px;
+            background-color: #f7b733; 
+            border: 3px solid #ffffff; 
+            border-radius: 50px; 
             font-family: 'Anton', sans-serif;
-            font-size: 1.5rem;
-            color: #1a1a1a; /* Letras oscuras para buen contraste */
+            font-size: clamp(1.1rem, 5vw, 1.5rem); /* Se adapta al celular */
+            color: #1a1a1a; 
             text-transform: uppercase;
             z-index: 130;
-            transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
+            transition: transform 0.2s, box-shadow 0.2s;
             cursor: pointer;
             box-shadow: 0 8px 15px rgba(0,0,0,0.6);
-        }
-
-        .estas-listo-button:hover {
-            transform: scale(1.05);
-            background-color: #ffcc00;
-            box-shadow: 0 12px 20px rgba(0,0,0,0.8);
         }
 
         .estas-listo-button:active {
@@ -141,25 +139,23 @@
             box-shadow: 0 4px 8px rgba(0,0,0,0.5);
         }
 
-        /* Clase para el desvanecimiento de salida */
         .fade-out {
             opacity: 0 !important;
+            pointer-events: none;
         }
         
         /* ------------------------------------------------------------------ */
-
-        /* Estilos del contenedor principal (Invitación) */
+        /* Estilos del contenedor principal (Invitación elástica) */
         #invitation-content {
-            width: 90%;
-            max-width: 480px;
-            padding: 20px;
-            background: rgba(0, 0, 0, 0.5);
+            width: 92%;
+            max-width: 450px;
+            padding: 30px 20px;
+            background: rgba(0, 0, 0, 0.6); /* Un poco más oscuro para mejor lectura */
             border-radius: 15px;
             text-align: center;
             position: relative;
             z-index: 10;
-            margin-top: 40px;
-            margin-bottom: 40px;
+            margin: 40px auto;
             display: none; 
         }
         
@@ -169,46 +165,155 @@
         }
         
         @keyframes fadeInInvitation {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
         }
         
-        /* Animaciones Dinos */
+        /* Animaciones y estilos de Dinos Laterales Fluidos */
         @keyframes slideInDinoBottom {
-            from { opacity: 0; transform: translateY(20px); }
+            from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
         @keyframes slideInDinoTop {
-            from { opacity: 0; transform: translateY(-20px); }
+            from { opacity: 0; transform: translateY(-30px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
         .dino-lateral {
             position: fixed;
             height: auto;
-            max-width: 25%;
+            width: 28vw; /* Miden el 28% del ancho de la pantalla SIEMPRE */
+            min-width: 70px;
+            max-width: 140px;
             z-index: 15;
             opacity: 0; 
             animation-duration: 1.2s;
             animation-timing-function: ease-out;
-            animation-delay: 0.5s;
             animation-fill-mode: forwards;
             animation-play-state: paused; 
             pointer-events: none;
         }
 
-        .dino-arriba-izq { top: -10px; left: -20px; animation-name: slideInDinoTop; }
-        .dino-arriba-der { top: -10px; right: -20px; transform: scaleX(-1); animation-name: slideInDinoTop; }
-        .dino-abajo-izq { bottom: -10px; left: -20px; animation-name: slideInDinoBottom; }
-        .dino-abajo-der { bottom: -10px; right: -20px; transform: scaleX(-1); animation-name: slideInDinoBottom; }
+        /* Posiciones ajustadas para no salirse */
+        .dino-arriba-izq { top: -10px; left: -10px; animation-name: slideInDinoTop; }
+        .dino-arriba-der { top: -10px; right: -10px; transform: scaleX(-1); animation-name: slideInDinoTop; }
+        .dino-abajo-izq { bottom: -10px; left: -10px; animation-name: slideInDinoBottom; }
+        .dino-abajo-der { bottom: -10px; right: -10px; transform: scaleX(-1); animation-name: slideInDinoBottom; }
 
-        .interactive-links {
-            background-color: #2b1d0e;
+        /* Dinos de decoración internos */
+        .dino-deco { position: absolute; z-index: 5; opacity: 0.8; pointer-events: none;}
+        .trex-deco { top: -40px; left: -30px; width: 35%; content: url('url_de_la_imagen_trex.png'); }
+        .triceratops-deco { bottom: 20%; left: -30px; width: 30%; content: url('url_de_la_imagen_triceratops.png'); }
+        .pterodactilo-deco { top: 10px; right: -20px; width: 25%; content: url('url_de_la_imagen_pterodactilo.png'); }
+        .theropodo-deco { bottom: -30px; left: -20px; width: 30%; content: url('url_de_la_imagen_theropodo.png'); }
+
+        h2.date-header {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 300;
+            font-size: clamp(1rem, 4vw, 1.2rem);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 20px;
+            margin-bottom: 0;
+            color: #d4d4d4;
+            position: relative;
+            z-index: 20;
+        }
+
+        .date-number {
+            font-family: 'Anton', sans-serif;
+            font-size: clamp(4rem, 20vw, 6.5rem); /* Se adapta al celular */
+            color: #f7b733;
+            margin-top: -10px;
+            margin-bottom: 0;
+            line-height: 1.1;
+            position: relative;
+            z-index: 20;
+        }
+
+        .date-month-year {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(1rem, 5vw, 1.3rem);
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-top: -5px;
+            margin-bottom: 20px;
+            color: #f7b733;
+            position: relative;
+            z-index: 20;
+        }
+
+        .description { 
+            font-size: clamp(0.9rem, 4vw, 1rem); 
+            margin-bottom: 20px; 
+            color: #ffffff; 
+            line-height: 1.5; 
+            position: relative;
+            z-index: 20;
+        }
+
+        /* Contador fluido */
+        .countdown-wrapper {
+            margin: 30px 0;
+            padding: 15px 10px;
+            background: rgba(20, 35, 10, 0.8);
+            border: 2px dashed #f7b733;
             border-radius: 10px;
-            padding: 20px;
-            max-width: 320px;
-            margin: 0 auto;
+            position: relative;
+            z-index: 20;
+        }
+
+        .countdown-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: #f7b733;
+            text-transform: uppercase;
+            font-size: clamp(0.7rem, 3.5vw, 0.9rem);
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        .countdown-container { 
+            display: flex; 
+            justify-content: center; 
+            gap: 2%; /* Gap relativo */
+        }
+
+        .time-box {
+            background-color: #1a1a1a;
+            border: 1px solid #4a5d23;
+            border-radius: 6px;
+            padding: 8px 5px;
+            flex: 1; /* Todos los cuadritos miden lo mismo */
+            max-width: 60px;
+            text-align: center;
+        }
+
+        .time-number {
+            font-family: 'Anton', sans-serif;
+            font-size: clamp(1.5rem, 7vw, 2.2rem);
+            color: #ffffff;
+            line-height: 1;
+            display: block;
+        }
+
+        .time-label {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(0.5rem, 2.5vw, 0.6rem);
+            color: #a8b092;
+            text-transform: uppercase;
+            margin-top: 5px;
+            display: block;
+            font-weight: bold;
+        }
+
+        /* Enlaces fluidos */
+        .interactive-links {
+            background-color: rgba(43, 29, 14, 0.9);
+            border-radius: 10px;
+            padding: 20px 15px;
+            width: 100%;
             position: relative;
             z-index: 20;
         }
@@ -216,7 +321,7 @@
         h3.links-header {
             font-family: 'Montserrat', sans-serif;
             font-weight: 700;
-            font-size: 1.2rem;
+            font-size: clamp(1rem, 5vw, 1.2rem);
             color: #f7b733;
             text-transform: uppercase;
             margin-bottom: 20px;
@@ -229,165 +334,38 @@
             color: #ffffff;
             text-decoration: none;
             border-radius: 8px;
-            padding: 10px 15px;
+            padding: 12px;
             margin-bottom: 15px;
             font-weight: bold;
             text-align: left;
-            transition: transform 0.2s, background-color 0.2s;
+            transition: background-color 0.2s;
         }
 
-        .link-button:hover { transform: scale(1.03); background-color: #c06c1d; }
-        .link-button .icon { font-size: 1.8rem; margin-right: 15px; width: 35px; text-align: center; }
-        .link-button .text { display: flex; flex-direction: column; }
-        .link-button .main-text { font-size: 0.9rem; text-transform: uppercase; }
-        .link-button .sub-text { font-size: 0.8rem; font-weight: normal; color: #ffe4cc; }
-
-        /* --- AJUSTES PARA CELULAR (Solución de tamaños y dinos) --- */
-        @media (max-width: 480px) {
-            /* 1. Hacemos que el ROOOAAR se adapte al ancho de la pantalla mágicamente */
-            .roaar-text { 
-                font-size: 15vw; 
-                letter-spacing: 1px;
-            }
-
-            /* 2. Aparecemos a los dinosaurios pero más pequeños para que no tapen todo */
-            .dino-lateral { 
-                display: block !important; 
-                max-width: 30%; 
-            }
-            .dino-arriba-izq { left: -10px; top: -5px; }
-            .dino-arriba-der { right: -10px; top: -5px; }
-            .dino-abajo-izq { left: -10px; bottom: -5px; }
-            .dino-abajo-der { right: -10px; bottom: -5px; }
-
-            /* 3. Achicamos el botón, el logo y los números para que todo respire */
-            .estas-listo-button { 
-                font-size: 1.1rem; 
-                padding: 12px 20px; 
-                width: 85%;
-            }
-            .logo-emilio { 
-                margin-top: 100px; 
-                max-width: 200px; 
-            }
-            .date-number { 
-                font-size: 4rem; 
-            }
-            .time-box { 
-                width: 45px; 
-                padding: 8px; 
-            }
-            .time-number { 
-                font-size: 1.6rem; 
-            }
-            .time-label {
-                font-size: 0.5rem;
-            }
-            
-            /* 4. Achicamos los dinosaurios de decoración que están detrás del texto */
-            .trex-deco { max-width: 150px; top: -40px; left: -40px; }
-            .triceratops-deco { max-width: 120px; left: -40px; }
-            .pterodactilo-deco { max-width: 100px; right: -30px; }
-            .theropodo-deco { max-width: 120px; left: -30px; bottom: -30px; }
+        .link-button:active { background-color: #c06c1d; transform: scale(0.98); }
+        
+        .link-button .icon { 
+            font-size: 1.5rem; 
+            margin-right: 12px; 
+            min-width: 30px; 
+            text-align: center; 
+        }
+        
+        .link-button .text { 
+            display: flex; 
+            flex-direction: column; 
+        }
+        
+        .link-button .main-text { 
+            font-size: clamp(0.8rem, 4vw, 0.9rem); 
+            text-transform: uppercase; 
+        }
+        
+        .link-button .sub-text { 
+            font-size: clamp(0.65rem, 3.5vw, 0.8rem); 
+            font-weight: normal; 
+            color: #ffe4cc; 
         }
 
-        .dino-deco { position: absolute; max-width: 250px; z-index: 15; }
-        .trex-deco { top: -60px; left: -80px; content: url('url_de_la_imagen_trex.png'); }
-        .triceratops-deco { bottom: 25%; left: -70px; max-width: 180px; content: url('url_de_la_imagen_triceratops.png'); }
-        .pterodactilo-deco { top: 20px; right: -60px; max-width: 150px; content: url('url_de_la_imagen_pterodactilo.png'); }
-        .theropodo-deco { bottom: -50px; left: -50px; max-width: 180px; content: url('url_de_la_imagen_theropodo.png'); }
-
-        .logo-emilio {
-            margin-top: 150px;
-            margin-bottom: 20px;
-            z-index: 20;
-            position: relative;
-            content: url('url_de_la_imagen_logo_emilio.png');
-            max-width: 280px;
-        }
-
-        h2.date-header {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 300;
-            font-size: 1.2rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 0;
-            color: #d4d4d4;
-        }
-
-        .date-number {
-            font-family: 'Anton', sans-serif;
-            font-size: 6rem;
-            color: #f7b733;
-            margin-top: -10px;
-            margin-bottom: 0;
-            line-height: 1;
-        }
-
-        .date-month-year {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.3rem;
-            text-transform: uppercase;
-            font-weight: 700;
-            margin-top: -5px;
-            margin-bottom: 20px;
-            color: #f7b733;
-        }
-
-        .description { font-size: 1rem; margin-bottom: 20px; color: #ffffff; line-height: 1.5; padding: 0 10px; }
-
-        .countdown-wrapper {
-            margin: 30px 0;
-            padding: 15px;
-            background: rgba(20, 35, 10, 0.7);
-            border: 2px dashed #f7b733;
-            border-radius: 10px;
-            box-shadow: 0 0 15px rgba(247, 183, 51, 0.2);
-            position: relative;
-            z-index: 20;
-        }
-
-        .countdown-title {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            color: #f7b733;
-            text-transform: uppercase;
-            font-size: 0.9rem;
-            margin-bottom: 15px;
-            letter-spacing: 1px;
-        }
-
-        .countdown-container { display: flex; justify-content: center; gap: 12px; }
-
-        .time-box {
-            background-color: #1a1a1a;
-            border: 1px solid #4a5d23;
-            border-radius: 6px;
-            padding: 10px;
-            width: 55px;
-            text-align: center;
-            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
-        }
-
-        .time-number {
-            font-family: 'Anton', sans-serif;
-            font-size: 2.2rem;
-            color: #ffffff;
-            line-height: 1;
-            text-shadow: 2px 2px 4px #000000;
-            display: block;
-        }
-
-        .time-label {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.6rem;
-            color: #a8b092;
-            text-transform: uppercase;
-            margin-top: 5px;
-            display: block;
-            font-weight: bold;
-        }
     </style>
 </head>
 <body>
@@ -457,7 +435,7 @@
                 <div class="icon">📝</div>
                 <div class="text">
                     <span class="main-text">CONFIRMAR ASISTENCIA</span>
-                    <span class="sub-text">(Google Form) Confirmar Asistencia Aquí</span>
+                    <span class="sub-text">Confirma tu asistencia aquí</span>
                 </div>
             </a>
         </div>
@@ -477,6 +455,7 @@
                 splashScreen.style.display = 'none';
                 invitationContent.classList.add('show-invitation'); 
                 
+                // Iniciar animación de los dinosaurios laterales
                 lateralDinos.forEach(dino => {
                     dino.style.animationPlayState = 'running';
                 });
@@ -491,13 +470,15 @@
             const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
             document.getElementById("days").innerText = days < 10 ? "0" + days : days;
             document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
             document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
             document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
+            
             if (distance < 0) {
                 clearInterval(x);
-                document.getElementById("countdown-timer").innerHTML = "<div style='font-family: Anton, sans-serif; font-size: 1.8rem; color: #cc0000; letter-spacing: 2px; text-transform: uppercase;'>¡LOS DINOSAURIOS HAN ESCAPADO!</div>";
+                document.getElementById("countdown-timer").innerHTML = "<div style='font-family: Anton, sans-serif; font-size: clamp(1.2rem, 5vw, 1.8rem); color: #cc0000; letter-spacing: 2px; text-transform: uppercase;'>¡LOS DINOSAURIOS HAN ESCAPADO!</div>";
                 document.querySelector(".countdown-title").style.display = "none";
             }
         }, 1000);

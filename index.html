@@ -6,10 +6,9 @@
     <title>Invitación Mi primer añito</title>
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <style>
-       /* --- FUENTE DE DINOSAURIO --- */
+        /* --- FUENTE DE DINOSAURIO --- */
         @font-face {
             font-family: 'DinoRoar';
-            /* Aquí ponemos el nombre limpio del archivo */
             src: url('dinoroar.otf') format('opentype');
         }
 
@@ -62,7 +61,7 @@
             gap: 40px; /* Espacio entre el texto y el botón */
         }
 
-       /* --- ESTILOS PARA EL TEXTO ROOOAAR PASTEL --- */
+        /* --- ESTILOS PARA EL TEXTO ROOOAAR PASTEL --- */
         .roaar-text {
             font-family: 'DinoRoar', 'Anton', sans-serif; /* ¡AQUÍ SE APLICA LA FUENTE! */
             font-size: 6rem; 
@@ -78,8 +77,7 @@
                  6px  6px 15px rgba(0,0,0,0.8); 
         }
 
-       
-    /* Paleta de colores Verde Pastel (De más claro a más oscuro) */
+        /* Paleta de colores Verde Pastel (De más claro a más oscuro) */
         .verde-1 { color: #E8F5E9; } /* Verde pastel casi blanco */
         .verde-2 { color: #C8E6C9; } /* Verde menta clarito */
         .verde-3 { color: #A5D6A7; } /* Verde pastel medio */
@@ -205,19 +203,92 @@
         .dino-abajo-izq { bottom: -10px; left: -20px; animation-name: slideInDinoBottom; }
         .dino-abajo-der { bottom: -10px; right: -20px; transform: scaleX(-1); animation-name: slideInDinoBottom; }
 
-        @media (max-width: 768px) {
-            .dino-lateral { max-width: 35%; }
-            .dino-arriba-izq { left: -30px; top: -15px; }
-            .dino-arriba-der { right: -30px; top: -15px; transform: scaleX(-1); }
-            .dino-abajo-izq { left: -30px; bottom: -15px; }
-            .dino-abajo-der { right: -30px; bottom: -15px; transform: scaleX(-1); }
-            .roaar-text { font-size: 5rem; }
+        .interactive-links {
+            background-color: #2b1d0e;
+            border-radius: 10px;
+            padding: 20px;
+            max-width: 320px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 20;
         }
-        
+
+        h3.links-header {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: #f7b733;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .link-button {
+            display: flex;
+            align-items: center;
+            background-color: #d17a22;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 8px;
+            padding: 10px 15px;
+            margin-bottom: 15px;
+            font-weight: bold;
+            text-align: left;
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        .link-button:hover { transform: scale(1.03); background-color: #c06c1d; }
+        .link-button .icon { font-size: 1.8rem; margin-right: 15px; width: 35px; text-align: center; }
+        .link-button .text { display: flex; flex-direction: column; }
+        .link-button .main-text { font-size: 0.9rem; text-transform: uppercase; }
+        .link-button .sub-text { font-size: 0.8rem; font-weight: normal; color: #ffe4cc; }
+
+        /* --- AJUSTES PARA CELULAR (Solución de tamaños y dinos) --- */
         @media (max-width: 480px) {
-             .dino-lateral { display: none; }
-             .roaar-text { font-size: 3.8rem; }
-             .estas-listo-button { font-size: 1.2rem; padding: 12px 20px; }
+            /* 1. Hacemos que el ROOOAAR se adapte al ancho de la pantalla mágicamente */
+            .roaar-text { 
+                font-size: 15vw; 
+                letter-spacing: 1px;
+            }
+
+            /* 2. Aparecemos a los dinosaurios pero más pequeños para que no tapen todo */
+            .dino-lateral { 
+                display: block !important; 
+                max-width: 30%; 
+            }
+            .dino-arriba-izq { left: -10px; top: -5px; }
+            .dino-arriba-der { right: -10px; top: -5px; }
+            .dino-abajo-izq { left: -10px; bottom: -5px; }
+            .dino-abajo-der { right: -10px; bottom: -5px; }
+
+            /* 3. Achicamos el botón, el logo y los números para que todo respire */
+            .estas-listo-button { 
+                font-size: 1.1rem; 
+                padding: 12px 20px; 
+                width: 85%;
+            }
+            .logo-emilio { 
+                margin-top: 100px; 
+                max-width: 200px; 
+            }
+            .date-number { 
+                font-size: 4rem; 
+            }
+            .time-box { 
+                width: 45px; 
+                padding: 8px; 
+            }
+            .time-number { 
+                font-size: 1.6rem; 
+            }
+            .time-label {
+                font-size: 0.5rem;
+            }
+            
+            /* 4. Achicamos los dinosaurios de decoración que están detrás del texto */
+            .trex-deco { max-width: 150px; top: -40px; left: -40px; }
+            .triceratops-deco { max-width: 120px; left: -40px; }
+            .pterodactilo-deco { max-width: 100px; right: -30px; }
+            .theropodo-deco { max-width: 120px; left: -30px; bottom: -30px; }
         }
 
         .dino-deco { position: absolute; max-width: 250px; z-index: 15; }
@@ -317,46 +388,6 @@
             display: block;
             font-weight: bold;
         }
-
-        .interactive-links {
-            background-color: #2b1d0e;
-            border-radius: 10px;
-            padding: 20px;
-            max-width: 320px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 20;
-        }
-
-        h3.links-header {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            font-size: 1.2rem;
-            color: #f7b733;
-            text-transform: uppercase;
-            margin-bottom: 20px;
-        }
-
-        .link-button {
-            display: flex;
-            align-items: center;
-            background-color: #d17a22;
-            color: #ffffff;
-            text-decoration: none;
-            border-radius: 8px;
-            padding: 10px 15px;
-            margin-bottom: 15px;
-            font-weight: bold;
-            text-align: left;
-            transition: transform 0.2s, background-color 0.2s;
-        }
-
-        .link-button:hover { transform: scale(1.03); background-color: #c06c1d; }
-        .link-button .icon { font-size: 1.8rem; margin-right: 15px; width: 35px; text-align: center; }
-        .link-button .text { display: flex; flex-direction: column; }
-        .link-button .main-text { font-size: 0.9rem; text-transform: uppercase; }
-        .link-button .sub-text { font-size: 0.8rem; font-weight: normal; color: #ffe4cc; }
-
     </style>
 </head>
 <body>
@@ -364,7 +395,7 @@
     <div id="splash-screen">
         <div class="central-sign-container">
             
-         <div class="roaar-text">
+            <div class="roaar-text">
                 <span class="verde-1">R</span><span class="verde-4">O</span><span class="verde-2">O</span><span class="verde-5">O</span><span class="verde-1">A</span><span class="verde-4">A</span><span class="verde-3">R</span>
             </div>
             <a id="enter-button" class="estas-listo-button">¿ESTÁS LISTO PARA ESTA AVENTURA?</a>
@@ -412,7 +443,7 @@
         </div>
 
         <div class="interactive-links">
-            <h3 class="links-header">Ubicacion y Confirmación</h3>
+            <h3 class="links-header">Ubicación y Confirmación</h3>
             
             <a href="https://waze.com/ul?q=tu_ubicacion" class="link-button" target="_blank">
                 <div class="icon">📍</div>

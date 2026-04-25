@@ -11,7 +11,6 @@
 
         @font-face {
             font-family: 'DinoRoar';
-            /* Carga de la fuente. Asegúrate que tu archivo en GitHub se llame dinoroar.otf o dinoroar.ttf */
             src: url('dinoroar.ttf') format('truetype'),
                  url('dinoroar.otf') format('opentype');
             font-weight: normal;
@@ -91,16 +90,19 @@
         .show-invitation { display: block !important; animation: fadeInInvitation 1s ease-in forwards; }
         @keyframes fadeInInvitation { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
 
-        /* --- DINOSAURIOS LATERALES (ANIMADOS Y AJUSTADOS) --- */
+        /* --- DINOSAURIOS LATERALES A PRUEBA DE FALLOS (Sin etiquetas IMG) --- */
         .dino-lateral {
-            position: fixed; height: auto; z-index: 15; opacity: 0; 
+            position: fixed; z-index: 15; opacity: 0; 
+            background-size: contain; background-repeat: no-repeat; background-position: center;
+            aspect-ratio: 1 / 1; /* Le da forma cuadrada al contenedor para que quepa la imagen */
             animation-duration: 1.2s; animation-timing-function: ease-out;
             animation-fill-mode: forwards; animation-play-state: paused; pointer-events: none;
         }
-        .dino-arriba-izq { top: -5px; left: -5px; width: 22vw; max-width: 120px; animation-name: slideInDinoTop; }
-        .dino-arriba-der { top: -5px; right: -5px; width: 22vw; max-width: 120px; transform: scaleX(-1); animation-name: slideInDinoTop; }
-        .dino-abajo-izq { bottom: -5px; left: -5px; width: 22vw; max-width: 120px; animation-name: slideInDinoBottom; }
-        .dino-abajo-der { bottom: -5px; right: -5px; width: 22vw; max-width: 120px; transform: scaleX(-1); animation-name: slideInDinoBottom; }
+        
+        .dino-arriba-izq { top: -5px; left: -5px; width: 22vw; max-width: 120px; background-image: url('Dino_arribaIzq.png'); animation-name: slideInDinoTop; }
+        .dino-arriba-der { top: -5px; right: -5px; width: 22vw; max-width: 120px; transform: scaleX(-1); background-image: url('dino_arribader.png'); animation-name: slideInDinoTop; }
+        .dino-abajo-izq { bottom: -5px; left: -5px; width: 22vw; max-width: 120px; background-image: url('dinoIzquierda.png'); animation-name: slideInDinoBottom; }
+        .dino-abajo-der { bottom: -5px; right: -5px; width: 22vw; max-width: 120px; transform: scaleX(-1); background-image: url('dinoderecha.png'); animation-name: slideInDinoBottom; }
 
         @keyframes slideInDinoBottom { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes slideInDinoTop { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
@@ -112,42 +114,40 @@
         .pterodactilo-deco { top: -10px; right: -15px; width: 70px; content: url('url_de_la_imagen_pterodactilo.png'); }
         .theropodo-deco { bottom: -20px; left: -10px; width: 80px; content: url('url_de_la_imagen_theropodo.png'); }
 
-        h2.date-header { font-size: 1.1rem; text-transform: uppercase; color: #d4d4d4; margin-bottom: 5px; }
-        .date-number { font-family: 'Anton', sans-serif; font-size: 5rem; color: #f7b733; line-height: 1; }
-        .date-month-year { font-weight: 700; color: #f7b733; margin-bottom: 20px; }
-        .description { font-size: 0.95rem; line-height: 1.4; margin-bottom: 20px; }
+        h2.date-header { font-size: 1.1rem; text-transform: uppercase; color: #d4d4d4; margin-bottom: 5px; position: relative; z-index: 10; }
+        .date-number { font-family: 'Anton', sans-serif; font-size: 5.5rem; color: #f7b733; line-height: 1; position: relative; z-index: 10; }
+        .date-month-year { font-weight: 700; color: #f7b733; margin-bottom: 15px; position: relative; z-index: 10; }
+        .description { font-size: 0.95rem; line-height: 1.4; margin-bottom: 20px; position: relative; z-index: 10; padding: 0 10px; }
 
         .countdown-wrapper {
-            margin: 20px 0; padding: 15px 5px; background: rgba(20, 35, 10, 0.8);
-            border: 2px dashed #f7b733; border-radius: 10px;
+            margin: 20px 0; padding: 15px 5px; background: rgba(20, 35, 10, 0.9);
+            border: 2px dashed #f7b733; border-radius: 10px; position: relative; z-index: 10;
         }
+        .countdown-title { font-family: 'Montserrat', sans-serif; font-weight: 700; color: #f7b733; text-transform: uppercase; font-size: 0.85rem; margin-bottom: 15px; }
         .countdown-container { display: flex; justify-content: center; gap: 8px; }
-        .time-box { background: #1a1a1a; border-radius: 6px; padding: 8px; width: 60px; }
-        .time-number { font-family: 'Anton', sans-serif; font-size: 1.8rem; display: block; }
-        .time-label { font-size: 0.6rem; color: #a8b092; text-transform: uppercase; }
+        .time-box { background: #1a1a1a; border: 1px solid #4a5d23; border-radius: 6px; padding: 8px; width: 60px; }
+        .time-number { font-family: 'Anton', sans-serif; font-size: 1.8rem; display: block; color: white; }
+        .time-label { font-size: 0.6rem; color: #a8b092; text-transform: uppercase; font-weight: bold; }
 
-        .interactive-links { background: #2b1d0e; border-radius: 10px; padding: 15px; margin-top: 20px; }
+        .interactive-links { background: #2b1d0e; border-radius: 10px; padding: 15px; margin-top: 20px; position: relative; z-index: 10; }
+        .links-header { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 1rem; color: #f7b733; text-transform: uppercase; margin-bottom: 15px; }
         .link-button {
             display: flex; align-items: center; background: #d17a22; color: white;
-            text-decoration: none; border-radius: 8px; padding: 10px; margin-bottom: 10px;
+            text-decoration: none; border-radius: 8px; padding: 10px; margin-bottom: 10px; transition: 0.2s;
         }
+        .link-button:active { transform: scale(0.96); background: #c06c1d; }
         .main-text { font-size: 0.85rem; font-weight: bold; display: block; }
-        .sub-text { font-size: 0.75rem; opacity: 0.8; }
-        .icon { margin-right: 10px; font-size: 1.2rem; }
+        .sub-text { font-size: 0.75rem; opacity: 0.8; color: #ffe4cc; }
+        .icon { margin-right: 10px; font-size: 1.4rem; }
 
-        /* --- AJUSTES CELULAR (Para que los dinos no tapen nada) --- */
+        /* --- AJUSTES CELULAR --- */
         @media (max-width: 480px) {
-            .roaar-text { font-size: 12vw; } /* Tamaño seguro en una línea */
-            
-            /* Dinos con tamaño controlado en móviles */
+            .roaar-text { font-size: 13vw; } 
             .dino-lateral { width: 25vw; max-width: 90px; } 
-            
-            /* Caja central más angosta para dejar espacio a los dinos */
-            #invitation-content { width: 85%; padding: 25px 15px; margin-top: 25px; } 
-            
-            .date-number { font-size: 4.2rem; }
-            .time-box { width: 50px; }
-            .time-number { font-size: 1.4rem; }
+            #invitation-content { width: 88%; padding: 25px 15px; margin-top: 30px; } 
+            .date-number { font-size: 4.5rem; }
+            .time-box { width: 50px; padding: 5px; }
+            .time-number { font-size: 1.5rem; }
             .estas-listo-button { font-size: 1.1rem; width: 90%; }
         }
     </style>
@@ -163,10 +163,10 @@
         </div>
     </div>
     
-    <img class="dino-lateral dino-arriba-izq" src="Dino_arribaIzq.png" alt="">
-    <img class="dino-lateral dino-arriba-der" src="dino_arribader.png" alt="">
-    <img class="dino-lateral dino-abajo-izq" src="dinoIzquierda.png" alt="">
-    <img class="dino-lateral dino-abajo-der" src="dinoderecha.png" alt="">
+    <div class="dino-lateral dino-arriba-izq"></div>
+    <div class="dino-lateral dino-arriba-der"></div>
+    <div class="dino-lateral dino-abajo-izq"></div>
+    <div class="dino-lateral dino-abajo-der"></div>
 
     <div id="invitation-content">
         <div class="dino-deco trex-deco"></div>
@@ -215,7 +215,6 @@
             setTimeout(() => {
                 splashScreen.style.display = 'none';
                 invitationContent.classList.add('show-invitation'); 
-                /* Activa la animación de los dinos de nuevo */
                 lateralDinos.forEach(dino => { dino.style.animationPlayState = 'running'; });
             }, 1200);
         });

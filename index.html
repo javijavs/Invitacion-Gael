@@ -6,16 +6,18 @@
     <title>Invitación Mi primer añito</title>
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        /* --- REGLA DE ORO PARA MÓVILES (Evita que las cosas se salgan de la pantalla) --- */
+        /* --- REGLA DE ORO PARA MÓVILES --- */
         *, *::before, *::after {
             box-sizing: border-box;
         }
 
-        /* --- FUENTE DE DINOSAURIO --- */
+        /* --- FUENTE DE DINOSAURIO (CORRECCIÓN IMPORTANTE) --- */
         @font-face {
             font-family: 'DinoRoar';
-            /* RECUERDA: Tu archivo en GitHub DEBE llamarse exactamente dinoroar.otf todo en minúsculas */
-            src: url('dinoroar.otf') format('opentype');
+            /* Asegúrate de convertir tu fuente a .ttf o .woff y subirla con este nombre exacto */
+            src: url('dinoroar.ttf') format('truetype'); 
+            font-weight: normal;
+            font-style: normal;
         }
 
         /* Estilos generales */
@@ -33,7 +35,7 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            overflow-x: hidden; /* Evita scroll horizontal */
+            overflow-x: hidden; 
             position: relative;
         }
 
@@ -64,25 +66,24 @@
             align-items: center;
             width: 90%;
             max-width: 600px;
-            gap: 3vh; /* Separación dinámica entre texto y botón */
+            gap: 5vh; /* Un poco más de espacio */
         }
 
         /* --- ESTILOS PARA EL TEXTO ROOOAAR PASTEL --- */
         .roaar-text {
             font-family: 'DinoRoar', 'Anton', sans-serif; 
-            /* CLAMP: Mínimo 3.5rem, ideal 15% del ancho de pantalla, máximo 7rem */
-            font-size: clamp(3.5rem, 15vw, 7rem); 
+            font-size: clamp(4rem, 18vw, 8rem); /* Un poco más grande en móviles */
             letter-spacing: 2px;
             text-align: center;
             line-height: 1.1;
             z-index: 120;
-            /* Contorno negro más fino para que no manche las letras en móviles */
+            /* Sombra suavizada para que la fuente de repuesto (si falla) no se vea tan negra */
             text-shadow: 
-                -2px -2px 0 #000,  
-                 2px -2px 0 #000,
-                -2px  2px 0 #000,
-                 2px  2px 0 #000,
-                 4px  4px 10px rgba(0,0,0,0.8); 
+                -1px -1px 0 #000,  
+                 1px -1px 0 #000,
+                -1px  1px 0 #000,
+                 1px  1px 0 #000,
+                 3px  3px 8px rgba(0,0,0,0.6); 
         }
 
         /* Paleta de colores Verde Pastel */
@@ -125,7 +126,7 @@
             border: 3px solid #ffffff; 
             border-radius: 50px; 
             font-family: 'Anton', sans-serif;
-            font-size: clamp(1.1rem, 5vw, 1.5rem); /* Se adapta al celular */
+            font-size: clamp(1.1rem, 5vw, 1.5rem); 
             color: #1a1a1a; 
             text-transform: uppercase;
             z-index: 130;
@@ -147,16 +148,17 @@
         /* ------------------------------------------------------------------ */
         /* Estilos del contenedor principal (Invitación elástica) */
         #invitation-content {
-            width: 92%;
-            max-width: 450px;
-            padding: 30px 20px;
-            background: rgba(0, 0, 0, 0.6); /* Un poco más oscuro para mejor lectura */
+            width: 90%;
+            max-width: 500px;
+            padding: 40px 30px;
+            background: rgba(0, 0, 0, 0.7); /* Ligeramente más oscuro */
             border-radius: 15px;
             text-align: center;
             position: relative;
             z-index: 10;
             margin: 40px auto;
             display: none; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5); /* Añadida sombra a la caja principal */
         }
         
         .show-invitation {
@@ -183,9 +185,9 @@
         .dino-lateral {
             position: fixed;
             height: auto;
-            width: 28vw; /* Miden el 28% del ancho de la pantalla SIEMPRE */
-            min-width: 70px;
-            max-width: 140px;
+            width: 25vw; /* Tamaño base para desktop */
+            min-width: 120px;
+            max-width: 200px;
             z-index: 15;
             opacity: 0; 
             animation-duration: 1.2s;
@@ -195,23 +197,23 @@
             pointer-events: none;
         }
 
-        /* Posiciones ajustadas para no salirse */
+        /* Posiciones ajustadas */
         .dino-arriba-izq { top: -10px; left: -10px; animation-name: slideInDinoTop; }
         .dino-arriba-der { top: -10px; right: -10px; transform: scaleX(-1); animation-name: slideInDinoTop; }
         .dino-abajo-izq { bottom: -10px; left: -10px; animation-name: slideInDinoBottom; }
         .dino-abajo-der { bottom: -10px; right: -10px; transform: scaleX(-1); animation-name: slideInDinoBottom; }
 
         /* Dinos de decoración internos */
-        .dino-deco { position: absolute; z-index: 5; opacity: 0.8; pointer-events: none;}
-        .trex-deco { top: -40px; left: -30px; width: 35%; content: url('url_de_la_imagen_trex.png'); }
-        .triceratops-deco { bottom: 20%; left: -30px; width: 30%; content: url('url_de_la_imagen_triceratops.png'); }
-        .pterodactilo-deco { top: 10px; right: -20px; width: 25%; content: url('url_de_la_imagen_pterodactilo.png'); }
-        .theropodo-deco { bottom: -30px; left: -20px; width: 30%; content: url('url_de_la_imagen_theropodo.png'); }
+        .dino-deco { position: absolute; z-index: 5; opacity: 0.9; pointer-events: none;}
+        .trex-deco { top: -40px; left: -30px; width: 140px; content: url('url_de_la_imagen_trex.png'); }
+        .triceratops-deco { bottom: 20%; left: -40px; width: 120px; content: url('url_de_la_imagen_triceratops.png'); }
+        .pterodactilo-deco { top: -10px; right: -20px; width: 110px; content: url('url_de_la_imagen_pterodactilo.png'); }
+        .theropodo-deco { bottom: -30px; left: -20px; width: 130px; content: url('url_de_la_imagen_theropodo.png'); }
 
         h2.date-header {
             font-family: 'Montserrat', sans-serif;
             font-weight: 300;
-            font-size: clamp(1rem, 4vw, 1.2rem);
+            font-size: clamp(1rem, 4vw, 1.4rem);
             text-transform: uppercase;
             letter-spacing: 2px;
             margin-top: 20px;
@@ -223,7 +225,7 @@
 
         .date-number {
             font-family: 'Anton', sans-serif;
-            font-size: clamp(4rem, 20vw, 6.5rem); /* Se adapta al celular */
+            font-size: clamp(5rem, 25vw, 7rem); /* Más grande y fluido */
             color: #f7b733;
             margin-top: -10px;
             margin-bottom: 0;
@@ -234,7 +236,7 @@
 
         .date-month-year {
             font-family: 'Montserrat', sans-serif;
-            font-size: clamp(1rem, 5vw, 1.3rem);
+            font-size: clamp(1.1rem, 5vw, 1.5rem);
             text-transform: uppercase;
             font-weight: 700;
             margin-top: -5px;
@@ -245,10 +247,10 @@
         }
 
         .description { 
-            font-size: clamp(0.9rem, 4vw, 1rem); 
-            margin-bottom: 20px; 
+            font-size: clamp(0.95rem, 4vw, 1.1rem); 
+            margin-bottom: 25px; 
             color: #ffffff; 
-            line-height: 1.5; 
+            line-height: 1.6; 
             position: relative;
             z-index: 20;
         }
@@ -256,7 +258,7 @@
         /* Contador fluido */
         .countdown-wrapper {
             margin: 30px 0;
-            padding: 15px 10px;
+            padding: 20px 10px;
             background: rgba(20, 35, 10, 0.8);
             border: 2px dashed #f7b733;
             border-radius: 10px;
@@ -269,7 +271,7 @@
             font-weight: 700;
             color: #f7b733;
             text-transform: uppercase;
-            font-size: clamp(0.7rem, 3.5vw, 0.9rem);
+            font-size: clamp(0.75rem, 3.5vw, 1rem);
             margin-bottom: 15px;
             letter-spacing: 1px;
         }
@@ -277,22 +279,22 @@
         .countdown-container { 
             display: flex; 
             justify-content: center; 
-            gap: 2%; /* Gap relativo */
+            gap: 3%; 
         }
 
         .time-box {
             background-color: #1a1a1a;
             border: 1px solid #4a5d23;
             border-radius: 6px;
-            padding: 8px 5px;
-            flex: 1; /* Todos los cuadritos miden lo mismo */
-            max-width: 60px;
+            padding: 10px 5px;
+            flex: 1; 
+            max-width: 65px;
             text-align: center;
         }
 
         .time-number {
             font-family: 'Anton', sans-serif;
-            font-size: clamp(1.5rem, 7vw, 2.2rem);
+            font-size: clamp(1.6rem, 7vw, 2.5rem);
             color: #ffffff;
             line-height: 1;
             display: block;
@@ -300,7 +302,7 @@
 
         .time-label {
             font-family: 'Montserrat', sans-serif;
-            font-size: clamp(0.5rem, 2.5vw, 0.6rem);
+            font-size: clamp(0.55rem, 2.5vw, 0.7rem);
             color: #a8b092;
             text-transform: uppercase;
             margin-top: 5px;
@@ -316,12 +318,13 @@
             width: 100%;
             position: relative;
             z-index: 20;
+            margin-top: 25px;
         }
 
         h3.links-header {
             font-family: 'Montserrat', sans-serif;
             font-weight: 700;
-            font-size: clamp(1rem, 5vw, 1.2rem);
+            font-size: clamp(1rem, 5vw, 1.3rem);
             color: #f7b733;
             text-transform: uppercase;
             margin-bottom: 20px;
@@ -344,7 +347,7 @@
         .link-button:active { background-color: #c06c1d; transform: scale(0.98); }
         
         .link-button .icon { 
-            font-size: 1.5rem; 
+            font-size: 1.6rem; 
             margin-right: 12px; 
             min-width: 30px; 
             text-align: center; 
@@ -356,16 +359,52 @@
         }
         
         .link-button .main-text { 
-            font-size: clamp(0.8rem, 4vw, 0.9rem); 
+            font-size: clamp(0.85rem, 4vw, 1rem); 
             text-transform: uppercase; 
         }
         
         .link-button .sub-text { 
-            font-size: clamp(0.65rem, 3.5vw, 0.8rem); 
+            font-size: clamp(0.7rem, 3.5vw, 0.85rem); 
             font-weight: normal; 
             color: #ffe4cc; 
         }
 
+        /* --- AJUSTES ESPECÍFICOS PARA MÓVILES (El corazón de las correcciones) --- */
+        @media (max-width: 768px) {
+            /* 1. Dinos laterales más grandes y presentes en móvil */
+            .dino-lateral { 
+                width: 40vw; /* Ahora son mucho más grandes en relación a la pantalla */
+                min-width: 130px;
+                max-width: none; /* Quitamos el max-width restrictivo */
+            }
+            
+            /* Ajustes finos de posición para los dinos laterales gigantes */
+            .dino-arriba-izq { left: -15px; top: -10px; }
+            .dino-arriba-der { right: -15px; top: -10px; }
+            .dino-abajo-izq { left: -15px; bottom: -10px; }
+            .dino-abajo-der { right: -15px; bottom: -10px; }
+
+            /* 2. Ajustamos la caja principal para que deje respirar a los dinos */
+            #invitation-content {
+                width: 95%; /* Ocupa casi todo el ancho disponible */
+                padding: 30px 15px; /* Menos padding interno */
+                margin-top: 60px; /* Un poco de aire arriba */
+            }
+
+            /* 3. Dinos decorativos internos (más contenidos) */
+            .trex-deco { width: 100px; top: -30px; left: -10px; }
+            .triceratops-deco { width: 90px; left: -20px; bottom: 15%; }
+            .pterodactilo-deco { width: 80px; top: -10px; right: -10px; }
+            .theropodo-deco { width: 100px; left: -10px; bottom: -20px; }
+        }
+
+        @media (max-width: 400px) {
+            /* Ajustes extra para teléfonos muy delgados */
+            .dino-lateral { width: 45vw; }
+            #invitation-content { padding: 25px 10px; }
+            .countdown-container { gap: 1%; }
+            .time-box { padding: 6px 3px; }
+        }
     </style>
 </head>
 <body>
@@ -380,11 +419,11 @@
         </div>
     </div>
     
-    <img class="dino-lateral dino-arriba-izq" src="Dino_arribaIzq.png" alt="Dino Arriba Izquierdo">
-    <img class="dino-lateral dino-arriba-der" src="dino_arribader.png" alt="Dino Arriba Derecho">
+    <img class="dino-lateral dino-arriba-izq" src="Dino_arribaIzq.png" >
+    <img class="dino-lateral dino-arriba-der" src="dino_arribader.png" >
 
-    <img class="dino-lateral dino-abajo-izq" src="dinoIzquierda.png" alt="Dino Abajo Izquierdo">
-    <img class="dino-lateral dino-abajo-der" src="dinoderecha.png" alt="Dino Abajo Derecho">
+    <img class="dino-lateral dino-abajo-izq" src="dinoIzquierda.png" >
+    <img class="dino-lateral dino-abajo-der" src="dinoderecha.png" >
 
     <div id="invitation-content">
         <div class="dino-deco trex-deco"></div>

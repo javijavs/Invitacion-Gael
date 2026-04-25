@@ -6,104 +6,61 @@
     <title>Invitación Mi primer añito</title>
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        /* --- REGLA DE ORO PARA MÓVILES --- */
-        *, *::before, *::after {
-            box-sizing: border-box;
-        }
+        /* --- REGLA DE ORO --- */
+        *, *::before, *::after { box-sizing: border-box; }
 
-        /* --- FUENTE DE DINOSAURIO (CORRECCIÓN IMPORTANTE) --- */
+        /* --- FUENTE MULTIFORMATO PARA EVITAR ERRORES EN GITHUB --- */
         @font-face {
             font-family: 'DinoRoar';
-            /* Asegúrate de convertir tu fuente a .ttf o .woff y subirla con este nombre exacto */
-            src: url('dinoroar.ttf') format('truetype'); 
+            /* Agregamos .ttf y .otf para que GitHub no tenga excusa para fallar */
+            src: url('dinoroar.ttf') format('truetype'),
+                 url('dinoroar.otf') format('opentype');
             font-weight: normal;
             font-style: normal;
         }
 
-        /* Estilos generales */
         body {
-            margin: 0;
-            padding: 0;
+            margin: 0; padding: 0;
             background-color: #0d0d0d; 
             background-image: url('junglafondo2.jpg'); 
-            background-size: cover; 
-            background-position: center; 
-            background-attachment: fixed; 
+            background-size: cover; background-position: center; background-attachment: fixed; 
             font-family: 'Montserrat', sans-serif;
             color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            overflow-x: hidden; 
-            position: relative;
+            display: flex; justify-content: center; align-items: center;
+            min-height: 100vh; overflow-x: hidden; position: relative;
         }
 
-        /* --- ESTILOS PARA LA PANTALLA DE ENTRADA (SPLASH SCREEN) --- */
+        /* --- PANTALLA DE ENTRADA --- */
         #splash-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: 100; 
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: 100; display: flex; justify-content: center; align-items: center;
             background-image: url('fondo_primera2.webp');
-            background-size: cover;
-            background-position: center;
-            background-color: #0d0d0d;
-            opacity: 1;
-            transition: opacity 1.2s ease-out; 
+            background-size: cover; background-position: center;
+            opacity: 1; transition: opacity 1.2s ease-out; 
         }
 
-        /* Contenedor Flexbox limpio y centrado */
         .central-sign-container {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            width: 90%;
-            max-width: 600px;
-            gap: 5vh; /* Un poco más de espacio */
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            width: 90%; max-width: 600px; gap: 30px;
         }
 
-        /* --- ESTILOS PARA EL TEXTO ROOOAAR PASTEL --- */
         .roaar-text {
-            font-family: 'DinoRoar', 'Anton', sans-serif; 
-            font-size: clamp(4rem, 18vw, 8rem); /* Un poco más grande en móviles */
-            letter-spacing: 2px;
-            text-align: center;
-            line-height: 1.1;
-            z-index: 120;
-            /* Sombra suavizada para que la fuente de repuesto (si falla) no se vea tan negra */
-            text-shadow: 
-                -1px -1px 0 #000,  
-                 1px -1px 0 #000,
-                -1px  1px 0 #000,
-                 1px  1px 0 #000,
-                 3px  3px 8px rgba(0,0,0,0.6); 
+            font-family: 'DinoRoar', 'Anton', sans-serif;
+            font-size: clamp(3rem, 14vw, 5.5rem); 
+            letter-spacing: 2px; text-align: center; line-height: 1.1;
+            z-index: 120; white-space: nowrap;
+            /* Sombra corregida para evitar manchas negras si falla la fuente */
+            text-shadow: 1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 3px 3px 6px rgba(0,0,0,0.8);
         }
 
-        /* Paleta de colores Verde Pastel */
-        .verde-1 { color: #E8F5E9; } 
-        .verde-2 { color: #C8E6C9; } 
-        .verde-3 { color: #A5D6A7; } 
-        .verde-4 { color: #81C784; } 
-        .verde-5 { color: #1ae224; } 
+        .verde-1 { color: #E8F5E9; } .verde-2 { color: #C8E6C9; } .verde-3 { color: #A5D6A7; } 
+        .verde-4 { color: #81C784; } .verde-5 { color: #1ae224; } 
 
-        /* Movimiento de salto */
         @keyframes saltoDino {
             0%, 100% { transform: translateY(0); } 
             50% { transform: translateY(-15px); }  
         }
-
-        .roaar-text span {
-            display: inline-block; 
-            animation: saltoDino 1.2s infinite ease-in-out; 
-        }
-
+        .roaar-text span { display: inline-block; animation: saltoDino 1.2s infinite ease-in-out; }
         .roaar-text span:nth-child(1) { animation-delay: 0.1s; }
         .roaar-text span:nth-child(2) { animation-delay: 0.6s; }
         .roaar-text span:nth-child(3) { animation-delay: 0.3s; }
@@ -112,298 +69,94 @@
         .roaar-text span:nth-child(6) { animation-delay: 0.7s; }
         .roaar-text span:nth-child(7) { animation-delay: 0.4s; }
 
-        /* NUEVO BOTÓN LIMPIO Y ELÁSTICO */
         .estas-listo-button {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            text-decoration: none;
-            width: 100%;
-            max-width: 320px;
-            padding: 15px 20px;
-            background-color: #f7b733; 
-            border: 3px solid #ffffff; 
-            border-radius: 50px; 
-            font-family: 'Anton', sans-serif;
-            font-size: clamp(1.1rem, 5vw, 1.5rem); 
-            color: #1a1a1a; 
-            text-transform: uppercase;
-            z-index: 130;
-            transition: transform 0.2s, box-shadow 0.2s;
-            cursor: pointer;
+            display: flex; justify-content: center; align-items: center; text-align: center; text-decoration: none;
+            width: 100%; max-width: 320px; padding: 15px 20px;
+            background-color: #f7b733; border: 3px solid #ffffff; border-radius: 50px; 
+            font-family: 'Anton', sans-serif; font-size: 1.2rem; color: #1a1a1a; 
+            text-transform: uppercase; z-index: 130; transition: transform 0.2s;
             box-shadow: 0 8px 15px rgba(0,0,0,0.6);
         }
 
-        .estas-listo-button:active {
-            transform: scale(0.95); 
-            box-shadow: 0 4px 8px rgba(0,0,0,0.5);
-        }
-
-        .fade-out {
-            opacity: 0 !important;
-            pointer-events: none;
-        }
+        .fade-out { opacity: 0 !important; pointer-events: none; }
         
-        /* ------------------------------------------------------------------ */
-        /* Estilos del contenedor principal (Invitación elástica) */
+        /* --- CONTENIDO INVITACIÓN --- */
         #invitation-content {
-            width: 90%;
-            max-width: 500px;
-            padding: 40px 30px;
-            background: rgba(0, 0, 0, 0.7); /* Ligeramente más oscuro */
-            border-radius: 15px;
-            text-align: center;
-            position: relative;
-            z-index: 10;
-            margin: 40px auto;
-            display: none; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5); /* Añadida sombra a la caja principal */
+            width: 90%; max-width: 450px; padding: 30px 20px;
+            background: rgba(0, 0, 0, 0.75); border-radius: 15px;
+            text-align: center; position: relative; z-index: 10;
+            margin: 40px auto; display: none; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.7);
         }
         
-        .show-invitation {
-            display: block !important;
-            animation: fadeInInvitation 1s ease-in forwards;
-        }
-        
-        @keyframes fadeInInvitation {
-            from { opacity: 0; transform: scale(0.95); }
-            to { opacity: 1; transform: scale(1); }
-        }
-        
-        /* Animaciones y estilos de Dinos Laterales Fluidos */
-        @keyframes slideInDinoBottom {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        .show-invitation { display: block !important; animation: fadeInInvitation 1s ease-in forwards; }
+        @keyframes fadeInInvitation { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
 
-        @keyframes slideInDinoTop {
-            from { opacity: 0; transform: translateY(-30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
+        /* DINOS LATERALES (ANIMACIÓN Y TAMAÑOS) */
         .dino-lateral {
-            position: fixed;
-            height: auto;
-            width: 25vw; /* Tamaño base para desktop */
-            min-width: 120px;
-            max-width: 200px;
-            z-index: 15;
-            opacity: 0; 
-            animation-duration: 1.2s;
-            animation-timing-function: ease-out;
-            animation-fill-mode: forwards;
-            animation-play-state: paused; 
-            pointer-events: none;
+            position: fixed; height: auto; z-index: 15; opacity: 0; 
+            animation-duration: 1.2s; animation-timing-function: ease-out;
+            animation-fill-mode: forwards; animation-play-state: paused; pointer-events: none;
         }
+        .dino-arriba-izq { top: -5px; left: -5px; width: 22vw; max-width: 120px; animation-name: slideInDinoTop; }
+        .dino-arriba-der { top: -5px; right: -5px; width: 22vw; max-width: 120px; transform: scaleX(-1); animation-name: slideInDinoTop; }
+        .dino-abajo-izq { bottom: -5px; left: -5px; width: 22vw; max-width: 120px; animation-name: slideInDinoBottom; }
+        .dino-abajo-der { bottom: -5px; right: -5px; width: 22vw; max-width: 120px; transform: scaleX(-1); animation-name: slideInDinoBottom; }
 
-        /* Posiciones ajustadas */
-        .dino-arriba-izq { top: -10px; left: -10px; animation-name: slideInDinoTop; }
-        .dino-arriba-der { top: -10px; right: -10px; transform: scaleX(-1); animation-name: slideInDinoTop; }
-        .dino-abajo-izq { bottom: -10px; left: -10px; animation-name: slideInDinoBottom; }
-        .dino-abajo-der { bottom: -10px; right: -10px; transform: scaleX(-1); animation-name: slideInDinoBottom; }
+        @keyframes slideInDinoBottom { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes slideInDinoTop { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* Dinos de decoración internos */
-        .dino-deco { position: absolute; z-index: 5; opacity: 0.9; pointer-events: none;}
-        .trex-deco { top: -40px; left: -30px; width: 140px; content: url('url_de_la_imagen_trex.png'); }
-        .triceratops-deco { bottom: 20%; left: -40px; width: 120px; content: url('url_de_la_imagen_triceratops.png'); }
-        .pterodactilo-deco { top: -10px; right: -20px; width: 110px; content: url('url_de_la_imagen_pterodactilo.png'); }
-        .theropodo-deco { bottom: -30px; left: -20px; width: 130px; content: url('url_de_la_imagen_theropodo.png'); }
+        /* DINOS DECO INTERNOS */
+        .dino-deco { position: absolute; z-index: 5; opacity: 0.7; pointer-events: none; }
+        .trex-deco { top: -30px; left: -20px; width: 80px; content: url('url_de_la_imagen_trex.png'); }
+        .triceratops-deco { bottom: 15%; left: -20px; width: 70px; content: url('url_de_la_imagen_triceratops.png'); }
+        .pterodactilo-deco { top: -10px; right: -15px; width: 70px; content: url('url_de_la_imagen_pterodactilo.png'); }
+        .theropodo-deco { bottom: -20px; left: -10px; width: 80px; content: url('url_de_la_imagen_theropodo.png'); }
 
-        h2.date-header {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 300;
-            font-size: clamp(1rem, 4vw, 1.4rem);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-top: 20px;
-            margin-bottom: 0;
-            color: #d4d4d4;
-            position: relative;
-            z-index: 20;
-        }
+        h2.date-header { font-size: 1.1rem; text-transform: uppercase; color: #d4d4d4; margin-bottom: 5px; position: relative; z-index: 10; }
+        .date-number { font-family: 'Anton', sans-serif; font-size: 5.5rem; color: #f7b733; line-height: 1; position: relative; z-index: 10; }
+        .date-month-year { font-weight: 700; color: #f7b733; margin-bottom: 15px; position: relative; z-index: 10; }
+        .description { font-size: 0.95rem; line-height: 1.4; margin-bottom: 20px; position: relative; z-index: 10; padding: 0 10px; }
 
-        .date-number {
-            font-family: 'Anton', sans-serif;
-            font-size: clamp(5rem, 25vw, 7rem); /* Más grande y fluido */
-            color: #f7b733;
-            margin-top: -10px;
-            margin-bottom: 0;
-            line-height: 1.1;
-            position: relative;
-            z-index: 20;
-        }
-
-        .date-month-year {
-            font-family: 'Montserrat', sans-serif;
-            font-size: clamp(1.1rem, 5vw, 1.5rem);
-            text-transform: uppercase;
-            font-weight: 700;
-            margin-top: -5px;
-            margin-bottom: 20px;
-            color: #f7b733;
-            position: relative;
-            z-index: 20;
-        }
-
-        .description { 
-            font-size: clamp(0.95rem, 4vw, 1.1rem); 
-            margin-bottom: 25px; 
-            color: #ffffff; 
-            line-height: 1.6; 
-            position: relative;
-            z-index: 20;
-        }
-
-        /* Contador fluido */
         .countdown-wrapper {
-            margin: 30px 0;
-            padding: 20px 10px;
-            background: rgba(20, 35, 10, 0.8);
-            border: 2px dashed #f7b733;
-            border-radius: 10px;
-            position: relative;
-            z-index: 20;
+            margin: 20px 0; padding: 15px 5px; background: rgba(20, 35, 10, 0.9);
+            border: 2px dashed #f7b733; border-radius: 10px; position: relative; z-index: 10;
         }
+        .countdown-title { font-family: 'Montserrat', sans-serif; font-weight: 700; color: #f7b733; text-transform: uppercase; font-size: 0.85rem; margin-bottom: 15px; }
+        .countdown-container { display: flex; justify-content: center; gap: 8px; }
+        .time-box { background: #1a1a1a; border: 1px solid #4a5d23; border-radius: 6px; padding: 8px; width: 60px; }
+        .time-number { font-family: 'Anton', sans-serif; font-size: 1.8rem; display: block; color: white; }
+        .time-label { font-size: 0.6rem; color: #a8b092; text-transform: uppercase; font-weight: bold; }
 
-        .countdown-title {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            color: #f7b733;
-            text-transform: uppercase;
-            font-size: clamp(0.75rem, 3.5vw, 1rem);
-            margin-bottom: 15px;
-            letter-spacing: 1px;
-        }
-
-        .countdown-container { 
-            display: flex; 
-            justify-content: center; 
-            gap: 3%; 
-        }
-
-        .time-box {
-            background-color: #1a1a1a;
-            border: 1px solid #4a5d23;
-            border-radius: 6px;
-            padding: 10px 5px;
-            flex: 1; 
-            max-width: 65px;
-            text-align: center;
-        }
-
-        .time-number {
-            font-family: 'Anton', sans-serif;
-            font-size: clamp(1.6rem, 7vw, 2.5rem);
-            color: #ffffff;
-            line-height: 1;
-            display: block;
-        }
-
-        .time-label {
-            font-family: 'Montserrat', sans-serif;
-            font-size: clamp(0.55rem, 2.5vw, 0.7rem);
-            color: #a8b092;
-            text-transform: uppercase;
-            margin-top: 5px;
-            display: block;
-            font-weight: bold;
-        }
-
-        /* Enlaces fluidos */
-        .interactive-links {
-            background-color: rgba(43, 29, 14, 0.9);
-            border-radius: 10px;
-            padding: 20px 15px;
-            width: 100%;
-            position: relative;
-            z-index: 20;
-            margin-top: 25px;
-        }
-
-        h3.links-header {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            font-size: clamp(1rem, 5vw, 1.3rem);
-            color: #f7b733;
-            text-transform: uppercase;
-            margin-bottom: 20px;
-        }
-
+        .interactive-links { background: #2b1d0e; border-radius: 10px; padding: 15px; margin-top: 20px; position: relative; z-index: 10; }
+        .links-header { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 1rem; color: #f7b733; text-transform: uppercase; margin-bottom: 15px; }
         .link-button {
-            display: flex;
-            align-items: center;
-            background-color: #d17a22;
-            color: #ffffff;
-            text-decoration: none;
-            border-radius: 8px;
-            padding: 12px;
-            margin-bottom: 15px;
-            font-weight: bold;
-            text-align: left;
-            transition: background-color 0.2s;
+            display: flex; align-items: center; background: #d17a22; color: white;
+            text-decoration: none; border-radius: 8px; padding: 10px; margin-bottom: 10px; transition: 0.2s;
         }
+        .link-button:active { transform: scale(0.96); background: #c06c1d; }
+        .main-text { font-size: 0.85rem; font-weight: bold; display: block; }
+        .sub-text { font-size: 0.75rem; opacity: 0.8; color: #ffe4cc; }
+        .icon { margin-right: 10px; font-size: 1.4rem; }
 
-        .link-button:active { background-color: #c06c1d; transform: scale(0.98); }
-        
-        .link-button .icon { 
-            font-size: 1.6rem; 
-            margin-right: 12px; 
-            min-width: 30px; 
-            text-align: center; 
-        }
-        
-        .link-button .text { 
-            display: flex; 
-            flex-direction: column; 
-        }
-        
-        .link-button .main-text { 
-            font-size: clamp(0.85rem, 4vw, 1rem); 
-            text-transform: uppercase; 
-        }
-        
-        .link-button .sub-text { 
-            font-size: clamp(0.7rem, 3.5vw, 0.85rem); 
-            font-weight: normal; 
-            color: #ffe4cc; 
-        }
-
-        /* --- AJUSTES ESPECÍFICOS PARA MÓVILES (El corazón de las correcciones) --- */
-        @media (max-width: 768px) {
-            /* 1. Dinos laterales más grandes y presentes en móvil */
-            .dino-lateral { 
-                width: 40vw; /* Ahora son mucho más grandes en relación a la pantalla */
-                min-width: 130px;
-                max-width: none; /* Quitamos el max-width restrictivo */
-            }
+        /* --- AJUSTES CELULAR (MEDIDAS CALIBRADAS) --- */
+        @media (max-width: 480px) {
+            .roaar-text { font-size: 13vw; } /* Tamaño perfecto para que quepa en una línea y no sea enorme */
+            .dino-lateral { width: 22vw; max-width: 90px; } /* Dinos controlados, no se comerán la pantalla */
             
-            /* Ajustes finos de posición para los dinos laterales gigantes */
-            .dino-arriba-izq { left: -15px; top: -10px; }
-            .dino-arriba-der { right: -15px; top: -10px; }
-            .dino-abajo-izq { left: -15px; bottom: -10px; }
-            .dino-abajo-der { right: -15px; bottom: -10px; }
-
-            /* 2. Ajustamos la caja principal para que deje respirar a los dinos */
-            #invitation-content {
-                width: 95%; /* Ocupa casi todo el ancho disponible */
-                padding: 30px 15px; /* Menos padding interno */
-                margin-top: 60px; /* Un poco de aire arriba */
-            }
-
-            /* 3. Dinos decorativos internos (más contenidos) */
-            .trex-deco { width: 100px; top: -30px; left: -10px; }
-            .triceratops-deco { width: 90px; left: -20px; bottom: 15%; }
-            .pterodactilo-deco { width: 80px; top: -10px; right: -10px; }
-            .theropodo-deco { width: 100px; left: -10px; bottom: -20px; }
-        }
-
-        @media (max-width: 400px) {
-            /* Ajustes extra para teléfonos muy delgados */
-            .dino-lateral { width: 45vw; }
-            #invitation-content { padding: 25px 10px; }
-            .countdown-container { gap: 1%; }
-            .time-box { padding: 6px 3px; }
+            /* Ajuste del recuadro de info para que encaje con los dinos */
+            #invitation-content { width: 88%; padding: 25px 15px; margin-top: 30px; } 
+            
+            .date-number { font-size: 4.5rem; }
+            .time-box { width: 50px; padding: 5px; }
+            .time-number { font-size: 1.5rem; }
+            .estas-listo-button { font-size: 1.1rem; width: 90%; }
+            
+            /* Dinos decorativos internos más pequeños para no estorbar en móvil */
+            .trex-deco { width: 65px; top: -25px; left: -15px; }
+            .triceratops-deco { width: 55px; left: -15px; bottom: 12%; }
+            .pterodactilo-deco { width: 60px; top: -5px; right: -10px; }
+            .theropodo-deco { width: 65px; left: -10px; bottom: -15px; }
         }
     </style>
 </head>
@@ -411,7 +164,6 @@
 
     <div id="splash-screen">
         <div class="central-sign-container">
-            
             <div class="roaar-text">
                 <span class="verde-1">R</span><span class="verde-4">O</span><span class="verde-2">O</span><span class="verde-5">O</span><span class="verde-1">A</span><span class="verde-4">A</span><span class="verde-3">R</span>
             </div>
@@ -419,11 +171,10 @@
         </div>
     </div>
     
-    <img class="dino-lateral dino-arriba-izq" src="Dino_arribaIzq.png" >
-    <img class="dino-lateral dino-arriba-der" src="dino_arribader.png" >
-
-    <img class="dino-lateral dino-abajo-izq" src="dinoIzquierda.png" >
-    <img class="dino-lateral dino-abajo-der" src="dinoderecha.png" >
+    <img class="dino-lateral dino-arriba-izq" src="Dino_arribaIzq.png" alt="Dino Arriba">
+    <img class="dino-lateral dino-arriba-der" src="dino_arribader.png" alt="Dino Arriba">
+    <img class="dino-lateral dino-abajo-izq" src="dinoIzquierda.png" alt="Dino Abajo">
+    <img class="dino-lateral dino-abajo-der" src="dinoderecha.png" alt="Dino Abajo">
 
     <div id="invitation-content">
         <div class="dino-deco trex-deco"></div>
@@ -435,47 +186,27 @@
         <div class="date-number">09</div>
         <div class="date-month-year">SÁBADO MAYO | 2026</div>
 
-        <p class="description">Acompáñanos a celebrar mi primer añito de vida, tu presencia es importante para mi y la de mis papis</p>
+        <p class="description">Acompáñanos a celebrar mi primer añito de vida, tu presencia es importante para mi y la de mis papis.</p>
 
         <div class="countdown-wrapper">
             <div class="countdown-title">⚠️ Faltan para la expedición ⚠️</div>
             <div class="countdown-container" id="countdown-timer">
-                <div class="time-box">
-                    <span class="time-number" id="days">00</span>
-                    <span class="time-label">Días</span>
-                </div>
-                <div class="time-box">
-                    <span class="time-number" id="hours">00</span>
-                    <span class="time-label">Horas</span>
-                </div>
-                <div class="time-box">
-                    <span class="time-number" id="minutes">00</span>
-                    <span class="time-label">Min</span>
-                </div>
-                <div class="time-box">
-                    <span class="time-number" id="seconds">00</span>
-                    <span class="time-label">Seg</span>
-                </div>
+                <div class="time-box"><span class="time-number" id="days">00</span><span class="time-label">Días</span></div>
+                <div class="time-box"><span class="time-number" id="hours">00</span><span class="time-label">Horas</span></div>
+                <div class="time-box"><span class="time-number" id="minutes">00</span><span class="time-label">Min</span></div>
+                <div class="time-box"><span class="time-number" id="seconds">00</span><span class="time-label">Seg</span></div>
             </div>
         </div>
 
         <div class="interactive-links">
             <h3 class="links-header">Ubicación y Confirmación</h3>
-            
-            <a href="https://waze.com/ul?q=tu_ubicacion" class="link-button" target="_blank">
+            <a href="https://waze.com/ul/h9fxde02sb" class="link-button" target="_blank">
                 <div class="icon">📍</div>
-                <div class="text">
-                    <span class="main-text">UBICACIÓN (WAZE)</span>
-                    <span class="sub-text">Ver Ubicación en Waze</span>
-                </div>
+                <div class="text"><span class="main-text">UBICACIÓN (WAZE)</span><span class="sub-text">Ver en Waze</span></div>
             </a>
-
-            <a href="https://forms.gle/tu_formulario" class="link-button" target="_blank">
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSe1DYz5kXV6zABrSWltc9gK3TxSOOz0MBNlhF1k1apHayhhPw/viewform?usp=header" class="link-button" target="_blank">
                 <div class="icon">📝</div>
-                <div class="text">
-                    <span class="main-text">CONFIRMAR ASISTENCIA</span>
-                    <span class="sub-text">Confirma tu asistencia aquí</span>
-                </div>
+                <div class="text"><span class="main-text">CONFIRMAR ASISTENCIA</span><span class="sub-text">Confirmar aquí</span></div>
             </a>
         </div>
     </div>
@@ -489,34 +220,23 @@
         enterButton.addEventListener('click', (e) => {
             e.preventDefault(); 
             splashScreen.classList.add('fade-out');
-
             setTimeout(() => {
                 splashScreen.style.display = 'none';
                 invitationContent.classList.add('show-invitation'); 
-                
-                // Iniciar animación de los dinosaurios laterales
-                lateralDinos.forEach(dino => {
-                    dino.style.animationPlayState = 'running';
-                });
+                lateralDinos.forEach(dino => { dino.style.animationPlayState = 'running'; });
             }, 1200);
         });
         
         const countDownDate = new Date("May 9, 2026 15:30:00").getTime();
-        const x = setInterval(function() {
+        setInterval(function() {
             const now = new Date().getTime();
             const distance = countDownDate - now;
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-            
-            document.getElementById("days").innerText = days < 10 ? "0" + days : days;
-            document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
-            document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
-            document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
+            document.getElementById("days").innerText = Math.floor(distance / 86400000);
+            document.getElementById("hours").innerText = Math.floor((distance % 86400000) / 3600000);
+            document.getElementById("minutes").innerText = Math.floor((distance % 3600000) / 60000);
+            document.getElementById("seconds").innerText = Math.floor((distance % 60000) / 1000);
             
             if (distance < 0) {
-                clearInterval(x);
                 document.getElementById("countdown-timer").innerHTML = "<div style='font-family: Anton, sans-serif; font-size: clamp(1.2rem, 5vw, 1.8rem); color: #cc0000; letter-spacing: 2px; text-transform: uppercase;'>¡LOS DINOSAURIOS HAN ESCAPADO!</div>";
                 document.querySelector(".countdown-title").style.display = "none";
             }

@@ -73,36 +73,42 @@
             background-color: #f7b733; border: 3px solid #ffffff; border-radius: 50px; 
             font-family: 'Anton', sans-serif; font-size: 1.2rem; color: #1a1a1a; 
             text-transform: uppercase; z-index: 130; transition: transform 0.2s;
-            box-shadow: 0 8px 15px rgba(0,0,0,0.6);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.4);
         }
 
         .fade-out { opacity: 0 !important; pointer-events: none; }
         
-        /* --- CONTENIDO INVITACIÓN --- */
+        /* --- CONTENIDO INVITACIÓN (SÚPER TRANSPARENTE) --- */
         #invitation-content {
-            width: 90%; max-width: 450px; padding: 30px 20px;
-            background: rgba(0, 0, 0, 0.75); border-radius: 15px;
+            width: 90%; max-width: 450px; padding: 35px 20px;
+            /* Fondo bajado a 0.01 (prácticamente invisible) */
+            background: rgba(255, 255, 255, 0.01); 
+            /* Blur mínimo (2px) para que se vea el fondo súper nítido */
+            backdrop-filter: blur(2px); 
+            -webkit-backdrop-filter: blur(2px);
+            /* Borde para mantener la caja viva */
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 20px;
             text-align: center; position: relative; z-index: 10;
             margin: 40px auto; display: none; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+            box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.4); /* Sombra suave para separar del fondo */
         }
         
         .show-invitation { display: block !important; animation: fadeInInvitation 1s ease-in forwards; }
-        @keyframes fadeInInvitation { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+        @keyframes fadeInInvitation { from { opacity: 0; } to { opacity: 1; } }
 
-        /* --- DINOSAURIOS LATERALES A PRUEBA DE FALLOS (Sin etiquetas IMG) --- */
+        /* --- DINOSAURIOS LATERALES (DIVS) --- */
         .dino-lateral {
             position: fixed; z-index: 15; opacity: 0; 
             background-size: contain; background-repeat: no-repeat; background-position: center;
-            aspect-ratio: 1 / 1; /* Le da forma cuadrada al contenedor para que quepa la imagen */
+            aspect-ratio: 1 / 1; 
             animation-duration: 1.2s; animation-timing-function: ease-out;
             animation-fill-mode: forwards; animation-play-state: paused; pointer-events: none;
         }
-        
-        .dino-arriba-izq { top: -5px; left: -5px; width: 22vw; max-width: 120px; background-image: url('Dino_arribaIzq.png'); animation-name: slideInDinoTop; }
-        .dino-arriba-der { top: -5px; right: -5px; width: 22vw; max-width: 120px; transform: scaleX(-1); background-image: url('dino_arribader.png'); animation-name: slideInDinoTop; }
-        .dino-abajo-izq { bottom: -5px; left: -5px; width: 22vw; max-width: 120px; background-image: url('dinoIzquierda.png'); animation-name: slideInDinoBottom; }
-        .dino-abajo-der { bottom: -5px; right: -5px; width: 22vw; max-width: 120px; transform: scaleX(-1); background-image: url('dinoderecha.png'); animation-name: slideInDinoBottom; }
+        .dino-arriba-izq { top: -5px; left: -5px; width: 22vw; max-width: 100px; background-image: url('dinoizqnuevo.png'); animation-name: slideInDinoTop; }
+        .dino-arriba-der { top: -5px; right: -5px; width: 22vw; max-width: 100px; transform: scaleX(-1); background-image: url('dinoderechanuevo.png'); animation-name: slideInDinoTop; }
+        .dino-abajo-izq { bottom: -5px; left: -5px; width: 22vw; max-width: 100px; background-image: url('dinoIzquierda.png'); animation-name: slideInDinoBottom; }
+        .dino-abajo-der { bottom: -5px; right: -5px; width: 22vw; max-width: 100px; transform: scaleX(-1); background-image: url('dinoderecha.png'); animation-name: slideInDinoBottom; }
 
         @keyframes slideInDinoBottom { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes slideInDinoTop { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
@@ -114,41 +120,35 @@
         .pterodactilo-deco { top: -10px; right: -15px; width: 70px; content: url('url_de_la_imagen_pterodactilo.png'); }
         .theropodo-deco { bottom: -20px; left: -10px; width: 80px; content: url('url_de_la_imagen_theropodo.png'); }
 
-        h2.date-header { font-size: 1.1rem; text-transform: uppercase; color: #d4d4d4; margin-bottom: 5px; position: relative; z-index: 10; }
-        .date-number { font-family: 'Anton', sans-serif; font-size: 5.5rem; color: #f7b733; line-height: 1; position: relative; z-index: 10; }
-        .date-month-year { font-weight: 700; color: #f7b733; margin-bottom: 15px; position: relative; z-index: 10; }
-        .description { font-size: 0.95rem; line-height: 1.4; margin-bottom: 20px; position: relative; z-index: 10; padding: 0 10px; }
+        /* Sombra fuerte a los textos para que se lean sobre el fondo de la foto */
+        h2.date-header { font-size: 1.1rem; text-transform: uppercase; color: #f0f0f0; margin-bottom: 5px; text-shadow: 1px 1px 4px rgba(0,0,0,0.9); }
+        .date-number { font-family: 'Anton', sans-serif; font-size: 5rem; color: #f7b733; line-height: 1; text-shadow: 2px 2px 6px rgba(0,0,0,0.8); }
+        .date-month-year { font-weight: 700; color: #f7b733; margin-bottom: 20px; text-shadow: 1px 1px 4px rgba(0,0,0,0.8); }
+        .description { font-size: 0.95rem; line-height: 1.4; margin-bottom: 20px; text-shadow: 1px 1px 4px rgba(0,0,0,0.9); }
 
         .countdown-wrapper {
-            margin: 20px 0; padding: 15px 5px; background: rgba(20, 35, 10, 0.9);
-            border: 2px dashed #f7b733; border-radius: 10px; position: relative; z-index: 10;
+            margin: 20px 0; padding: 15px 5px; background: rgba(20, 35, 10, 0.5); /* Fondo más suave */
+            border: 2px dashed rgba(247, 183, 51, 0.7); border-radius: 10px;
         }
-        .countdown-title { font-family: 'Montserrat', sans-serif; font-weight: 700; color: #f7b733; text-transform: uppercase; font-size: 0.85rem; margin-bottom: 15px; }
-        .countdown-container { display: flex; justify-content: center; gap: 8px; }
-        .time-box { background: #1a1a1a; border: 1px solid #4a5d23; border-radius: 6px; padding: 8px; width: 60px; }
+        .time-box { background: rgba(26, 26, 26, 0.8); border-radius: 6px; padding: 8px; width: 60px; }
         .time-number { font-family: 'Anton', sans-serif; font-size: 1.8rem; display: block; color: white; }
-        .time-label { font-size: 0.6rem; color: #a8b092; text-transform: uppercase; font-weight: bold; }
+        .time-label { font-size: 0.6rem; color: #a8b092; text-transform: uppercase; }
 
-        .interactive-links { background: #2b1d0e; border-radius: 10px; padding: 15px; margin-top: 20px; position: relative; z-index: 10; }
-        .links-header { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 1rem; color: #f7b733; text-transform: uppercase; margin-bottom: 15px; }
+        .interactive-links { background: rgba(43, 29, 14, 0.5); border-radius: 10px; padding: 15px; margin-top: 20px; border: 1px solid rgba(255,255,255,0.1); }
         .link-button {
             display: flex; align-items: center; background: #d17a22; color: white;
-            text-decoration: none; border-radius: 8px; padding: 10px; margin-bottom: 10px; transition: 0.2s;
+            text-decoration: none; border-radius: 8px; padding: 10px; margin-bottom: 10px;
         }
-        .link-button:active { transform: scale(0.96); background: #c06c1d; }
         .main-text { font-size: 0.85rem; font-weight: bold; display: block; }
-        .sub-text { font-size: 0.75rem; opacity: 0.8; color: #ffe4cc; }
-        .icon { margin-right: 10px; font-size: 1.4rem; }
+        .sub-text { font-size: 0.75rem; opacity: 0.8; }
+        .icon { margin-right: 10px; font-size: 1.2rem; }
 
         /* --- AJUSTES CELULAR --- */
         @media (max-width: 480px) {
-            .roaar-text { font-size: 13vw; } 
+            .roaar-text { font-size: 11vw; }
             .dino-lateral { width: 25vw; max-width: 90px; } 
-            #invitation-content { width: 88%; padding: 25px 15px; margin-top: 30px; } 
-            .date-number { font-size: 4.5rem; }
-            .time-box { width: 50px; padding: 5px; }
-            .time-number { font-size: 1.5rem; }
-            .estas-listo-button { font-size: 1.1rem; width: 90%; }
+            #invitation-content { width: 85%; padding: 25px 15px; } 
+            .date-number { font-size: 4rem; }
         }
     </style>
 </head>
@@ -182,7 +182,7 @@
 
         <div class="countdown-wrapper">
             <div class="countdown-title">⚠️ Faltan para la expedición ⚠️</div>
-            <div class="countdown-container" id="countdown-timer">
+            <div class="countdown-container" id="countdown-timer" style="display:flex; justify-content:center; gap:8px;">
                 <div class="time-box"><span class="time-number" id="days">00</span><span class="time-label">Días</span></div>
                 <div class="time-box"><span class="time-number" id="hours">00</span><span class="time-label">Horas</span></div>
                 <div class="time-box"><span class="time-number" id="minutes">00</span><span class="time-label">Min</span></div>
@@ -191,7 +191,7 @@
         </div>
 
         <div class="interactive-links">
-            <h3 class="links-header" style="font-size: 1rem; margin-bottom: 10px;">Ubicación y Confirmación</h3>
+            <h3 class="links-header" style="font-size: 1rem; margin-bottom: 10px; text-shadow: 1px 1px 3px rgba(0,0,0,0.8);">Ubicación y Confirmación</h3>
             <a href="https://waze.com/ul/h9fxde02sb" class="link-button" target="_blank">
                 <div class="icon">📍</div>
                 <div class="text"><span class="main-text">UBICACIÓN (WAZE)</span><span class="sub-text">Ver en Waze</span></div>
@@ -227,11 +227,6 @@
             document.getElementById("hours").innerText = Math.floor((distance % 86400000) / 3600000);
             document.getElementById("minutes").innerText = Math.floor((distance % 3600000) / 60000);
             document.getElementById("seconds").innerText = Math.floor((distance % 60000) / 1000);
-            
-            if (distance < 0) {
-                document.getElementById("countdown-timer").innerHTML = "<div style='font-family: Anton, sans-serif; font-size: clamp(1.2rem, 5vw, 1.8rem); color: #cc0000; letter-spacing: 2px; text-transform: uppercase;'>¡LOS DINOSAURIOS HAN ESCAPADO!</div>";
-                document.querySelector(".countdown-title").style.display = "none";
-            }
         }, 1000);
     </script>
 </body>
